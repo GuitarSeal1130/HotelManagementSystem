@@ -31,7 +31,8 @@ BEGIN_MESSAGE_MAP(CHMSDlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_Exit, &CHMSDlg::OnBnClickedCancel)
-	ON_BN_CLICKED(IDC_Exit, &CHMSDlg::OnBnClickedSignup)
+	ON_BN_CLICKED(IDC_Login, &CHMSDlg::OnBnClickedSignup)
+	ON_BN_CLICKED(IDC_Logout, &CHMSDlg::OnBnClickedSignout)
 END_MESSAGE_MAP()
 
 
@@ -49,6 +50,14 @@ BOOL CHMSDlg::OnInitDialog()
 	ShowWindow(SW_MINIMIZE);
 
 	// TODO: 在此添加额外的初始化代码
+	
+	// GetDlgItem(IDC_EStatus)->EnableWindow(false); 
+	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM \r\nPlease enter your User ID and Password. ");
+	GetDlgItem(IDC_EUserID)->EnableWindow(true);
+	GetDlgItem(IDC_EPassword)->EnableWindow(true);
+	GetDlgItem(IDC_EContents)->EnableWindow(false);
+	
+
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -89,15 +98,43 @@ HCURSOR CHMSDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CHMSDlg::OnBnClickedCancel()
+void CHMSDlg::OnBnClickedCancel()  //  Key "Exit"
 {
 	// TODO: 在此添加控件通知处理程序代码
 	CDialog::OnCancel();
 }
 
-void CHMSDlg::OnBnClickedSignup()
+void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 {
 	CString a, b;
-	GetDlgItem(IDC_UserID)->GetWindowText(a);
-	GetDlgItem(IDC_Password)->GetWindowText(b);
+	GetDlgItem(IDC_EUserID)->GetWindowText(a);
+	GetDlgItem(IDC_EPassword)->GetWindowText(b);
+	
+	if (a == "0000" && b == "1130")  // Administrator
+	{
+		GetDlgItem(IDC_EUserID)->EnableWindow(false);
+		GetDlgItem(IDC_EPassword)->EnableWindow(false);
+		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Administrator! ");
+		GetDlgItem(IDC_EContents)->EnableWindow(true);
+	}
+	else if (a == "1111" && b == "1111")  // Operator
+	{
+		GetDlgItem(IDC_EUserID)->EnableWindow(false);
+		GetDlgItem(IDC_EPassword)->EnableWindow(false);
+		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Operator! ");
+		GetDlgItem(IDC_EContents)->EnableWindow(true);
+	}
+	else
+		SetDlgItemText(IDC_EStatus, "Access denied! \r\nPlease enter your User ID and Password. ");
+}
+
+void CHMSDlg::OnBnClickedSignout()  // Key "Sign in! "
+{
+	GetDlgItem(IDC_EContents)->EnableWindow(false);
+	GetDlgItem(IDC_EUserID)->EnableWindow(true);
+	GetDlgItem(IDC_EPassword)->EnableWindow(true);
+	SetDlgItemText(IDC_EStatus, "Hotel Management System. \r\nPlease enter your User ID and Password. ");
+	GetDlgItem(IDC_EUserID)->SetWindowText("");
+	GetDlgItem(IDC_EPassword)->SetWindowText("");
+
 }
