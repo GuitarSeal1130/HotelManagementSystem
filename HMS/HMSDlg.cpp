@@ -6,6 +6,8 @@
 #include "HMS.h"
 #include "HMSDlg.h"
 #include "afxdialogex.h"
+#include "afxdb.h"
+#include "Get.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -109,31 +111,38 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 	CString a, b;
 	GetDlgItem(IDC_EUserID)->GetWindowText(a);
 	GetDlgItem(IDC_EPassword)->GetWindowText(b);
+
+	/*-----------------------------------------------------*/
+
+	/*-----------------------------------------------------*/
 	
-	if (a == "0000" && b == "1130")  // Administrator
+	if (Authentication(a,b)==(CString)"Administrator")  // Administrator 6s
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
 		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Administrator! ");
 		GetDlgItem(IDC_EContents)->EnableWindow(true);
+		SetDlgItemText(IDC_EContents, "Please commence your administration. ");
 	}
-	else if (a == "1111" && b == "1111")  // Operator
+	else if (Authentication(a, b) == (CString)"Operator")  // Operator 6s+12s
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
 		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Operator! ");
 		GetDlgItem(IDC_EContents)->EnableWindow(true);
+		SetDlgItemText(IDC_EContents, getContents());  //  Output inquiry result. 
 	}
 	else
 		SetDlgItemText(IDC_EStatus, "Access denied! \r\nPlease enter your User ID and Password. ");
 }
 
-void CHMSDlg::OnBnClickedSignout()  // Key "Sign in! "
+void CHMSDlg::OnBnClickedSignout()  // Key "Sign out"
 {
 	GetDlgItem(IDC_EContents)->EnableWindow(false);
+	SetDlgItemText(IDC_EContents, "");
 	GetDlgItem(IDC_EUserID)->EnableWindow(true);
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
-	SetDlgItemText(IDC_EStatus, "Hotel Management System. \r\nPlease enter your User ID and Password. ");
+	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM. \r\nPlease enter your User ID and Password. ");
 	GetDlgItem(IDC_EUserID)->SetWindowText("");
 	GetDlgItem(IDC_EPassword)->SetWindowText("");
 

@@ -190,6 +190,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Get.h" />
     <ClInclude Include="HMS.h" />
     <ClInclude Include="HMSDlg.h" />
     <ClInclude Include="Resource.h" />
@@ -197,6 +198,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Get.cpp" />
     <ClCompile Include="HMS.cpp" />
     <ClCompile Include="HMSDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
