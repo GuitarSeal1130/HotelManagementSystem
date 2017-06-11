@@ -142,7 +142,7 @@ void CHMSDlg::OnBnClickedSignout()  // Key "Sign out"
 	SetDlgItemText(IDC_EContents, "");
 	GetDlgItem(IDC_EUserID)->EnableWindow(true);
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
-	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM. \r\nPlease enter your User ID and Password. ");
+	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM \r\nPlease enter your User ID and Password. ");
 	GetDlgItem(IDC_EUserID)->SetWindowText("");
 	GetDlgItem(IDC_EPassword)->SetWindowText("");
 
