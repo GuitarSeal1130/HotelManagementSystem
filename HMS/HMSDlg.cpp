@@ -111,12 +111,8 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 	CString a, b;
 	GetDlgItem(IDC_EUserID)->GetWindowText(a);
 	GetDlgItem(IDC_EPassword)->GetWindowText(b);
-
-	/*-----------------------------------------------------*/
-
-	/*-----------------------------------------------------*/
 	
-	if (Authentication(a,b)==(CString)"Administrator")  // Administrator 6s
+	if (Authentication(a,b)==(CString)"Administrator")  // Administrator Verification (6s)
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
@@ -124,7 +120,7 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 		GetDlgItem(IDC_EContents)->EnableWindow(true);
 		SetDlgItemText(IDC_EContents, "Please commence your administration. ");
 	}
-	else if (Authentication(a, b) == (CString)"Operator")  // Operator 6s+12s
+	else if (Authentication(a, b) == (CString)"Operator")  // Operator Verification (6s+12s)
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
@@ -133,7 +129,7 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 		SetDlgItemText(IDC_EContents, getContents());  //  Output inquiry result. 
 	}
 	else
-		SetDlgItemText(IDC_EStatus, "Access denied! \r\nPlease enter your User ID and Password. ");
+		SetDlgItemText(IDC_EStatus, "Access denied! \r\nTry again please. ");
 }
 
 void CHMSDlg::OnBnClickedSignout()  // Key "Sign out"

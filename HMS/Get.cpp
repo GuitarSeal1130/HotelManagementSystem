@@ -28,7 +28,7 @@ CString getContents()
 	m_db.OpenEx(_T("DSN=HotelManagementSystem"), CDatabase::noOdbcDialog);
 	rs.m_pDatabase = &m_db;
 	rs.Open(AFX_DB_USE_DEFAULT_TYPE, "SELECT * FROM RoomOperation");
-	CString Output="\r\n    RoomID    BeginTime    CIdentityID    Remarks\r\n\r\n";
+	CString Output="\r\n    RoomID  |  BeginTime  |  CIdentityID  |  Remarks\r\n\r\n";
 	CString RoomID, BeginTime, CIdentityID, Remarks;
 	for (short int i = 0; i < rs.GetRecordCount(); i+=1)
 	{
@@ -37,7 +37,7 @@ CString getContents()
 		rs.GetFieldValue((short)2, CIdentityID);
 		rs.GetFieldValue((short)3, Remarks);
 		rs.MoveNext();
-		Output = Output+"      "+RoomID + "       " + BeginTime + "         " + CIdentityID + "          " + Remarks + "\r\n";
+		Output = Output+"      "+RoomID + "        " + BeginTime + "          " + CIdentityID + "          " + Remarks + "\r\n";
 	}
 	return Output;
 }
