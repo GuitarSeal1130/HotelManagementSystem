@@ -27,7 +27,7 @@ CString getContents()
 	CRecordset rs;
 	m_db.OpenEx(_T("DSN=HotelManagementSystem"), CDatabase::noOdbcDialog);
 	rs.m_pDatabase = &m_db;
-	rs.Open(AFX_DB_USE_DEFAULT_TYPE, "SELECT * FROM RoomOperation");
+	rs.Open(AFX_DB_USE_DEFAULT_TYPE, "SELECT * FROM dbo.RoomOperation");
 	CString Output="\r\n    RoomID  |  BeginTime  |  CIdentityID  |  Remarks\r\n\r\n";
 	CString RoomID, BeginTime, CIdentityID, Remarks;
 	for (short int i = 0; i < rs.GetRecordCount(); i+=1)
