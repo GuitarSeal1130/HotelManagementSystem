@@ -93,6 +93,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalOptions>/D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <TreatSpecificWarningsAsErrors>%(TreatSpecificWarningsAsErrors)</TreatSpecificWarningsAsErrors>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -190,6 +191,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdminDlg.h" />
+    <ClInclude Include="ContensDlg.h" />
+    <ClInclude Include="DeniedDlg.h" />
     <ClInclude Include="Get.h" />
     <ClInclude Include="HMS.h" />
     <ClInclude Include="HMSDlg.h" />
@@ -198,6 +202,9 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AdminDlg.cpp" />
+    <ClCompile Include="ContensDlg.cpp" />
+    <ClCompile Include="DeniedDlg.cpp" />
     <ClCompile Include="Get.cpp" />
     <ClCompile Include="HMS.cpp" />
     <ClCompile Include="HMSDlg.cpp" />
@@ -220,4 +227,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="HMS.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

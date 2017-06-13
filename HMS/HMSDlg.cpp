@@ -8,6 +8,9 @@
 #include "afxdialogex.h"
 #include "afxdb.h"
 #include "Get.h"
+#include "ContensDlg.h"
+#include "DeniedDlg.h"
+#include "AdminDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,15 +52,12 @@ BOOL CHMSDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
-	ShowWindow(SW_MINIMIZE);
+	//ShowWindow(SW_MINIMIZE);
 
 	// TODO: 在此添加额外的初始化代码
 	
-	// GetDlgItem(IDC_EStatus)->EnableWindow(false); 
-	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM \r\nPlease enter your User ID and Password. ");
 	GetDlgItem(IDC_EUserID)->EnableWindow(true);
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
-	GetDlgItem(IDC_EContents)->EnableWindow(false);
 	
 
 
@@ -116,29 +116,27 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
-		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Administrator! ");
-		GetDlgItem(IDC_EContents)->EnableWindow(true);
-		SetDlgItemText(IDC_EContents, "Please commence your administration. ");
+		CAdminDlg admindlg;
+		admindlg.DoModal();
 	}
 	else if (Authentication(a, b) == (CString)"Operator")  // Operator Verification (6s+12s)
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
-		SetDlgItemText(IDC_EStatus, "Access granted. \r\nWelcome back, Operator! ");
-		GetDlgItem(IDC_EContents)->EnableWindow(true);
-		SetDlgItemText(IDC_EContents, getContents());  //  Output inquiry result. 
+		CContensDlg contensdlg;
+		contensdlg.DoModal();
 	}
 	else
-		SetDlgItemText(IDC_EStatus, "Access denied! \r\nTry again please. ");
+	{
+		CDeniedDlg denieddlg;
+		denieddlg.DoModal();
+	}
 }
 
 void CHMSDlg::OnBnClickedSignout()  // Key "Sign out"
 {
-	GetDlgItem(IDC_EContents)->EnableWindow(false);
-	SetDlgItemText(IDC_EContents, "");
 	GetDlgItem(IDC_EUserID)->EnableWindow(true);
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
-	SetDlgItemText(IDC_EStatus, "HOTEL MANAGEMENT SYSTEM \r\nPlease enter your User ID and Password. ");
 	GetDlgItem(IDC_EUserID)->SetWindowText("");
 	GetDlgItem(IDC_EPassword)->SetWindowText("");
 }
