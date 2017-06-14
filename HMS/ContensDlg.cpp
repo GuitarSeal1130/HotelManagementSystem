@@ -50,19 +50,21 @@ BOOL CContensDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	
-	CString welcome = "Access granted. \r\nWelcome back, Operator ";
-	welcome = welcome + getUserName(UserID) + " ! " + getContents();
+	CString welcome = "Access granted. \r\nWelcome back, Operator 【";
+	welcome = welcome + getUserName(UserID) + "】! " + getContents();
 	SetDlgItemText(IDC_EContents2, welcome);
+	GetDlgItem(IDC_EContents2)->SetFocus();
 
 	
-	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+	return FALSE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
 void CContensDlg::OnBnClickedRefresh()
 {
-	CString welcome = "Access granted. \r\nWelcome back, Operator ";
-	welcome = welcome + getUserName(UserID) + " ! " + getContents();
+	CString welcome = "Access granted. \r\nWelcome back, Operator 【";
+	welcome = welcome + getUserName(UserID) + "】! " + getContents();
 	SetDlgItemText(IDC_EContents2, welcome);
+	GetDlgItem(IDC_EContents2)->SetFocus();
 }
 
 void CContensDlg::OnBnClickedCancel()

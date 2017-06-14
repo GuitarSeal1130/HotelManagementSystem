@@ -58,10 +58,10 @@ BOOL CHMSDlg::OnInitDialog()
 	
 	GetDlgItem(IDC_EUserID)->EnableWindow(true);
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
-	
+	GetDlgItem(IDC_EUserID)->SetFocus();
 
 
-	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+	return FALSE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
 // 如果向对话框添加最小化按钮，则需要下面的代码
@@ -129,7 +129,7 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 		CContensDlg contensdlg;
 		contensdlg.DoModal();
 	}
-	else
+	else if(Authentication(a, b) == (CString)"False")
 	{
 		CDeniedDlg denieddlg;
 		denieddlg.DoModal();
@@ -142,4 +142,5 @@ void CHMSDlg::OnBnClickedSignout()  // Key "Sign out"
 	GetDlgItem(IDC_EPassword)->EnableWindow(true);
 	GetDlgItem(IDC_EUserID)->SetWindowText("");
 	GetDlgItem(IDC_EPassword)->SetWindowText("");
+	GetDlgItem(IDC_EUserID)->SetFocus();
 }

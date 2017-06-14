@@ -47,20 +47,22 @@ BOOL CAdminDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// 设置大图标
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
-	CString welcome = "Access granted. \r\nWelcome back, Administrator ";
-	welcome = welcome + getUserName(UserID) + " ! ";
+	CString welcome = "Access granted. \r\nWelcome back, Administrator 【";
+	welcome = welcome + getUserName(UserID) + "】! ";
 	SetDlgItemText(IDC_EContents3, welcome);
+	GetDlgItem(IDC_EContents3)->SetFocus();
 
 
 
-	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+	return FALSE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
 void CAdminDlg::OnBnClickedRefresh()
 {
-	CString welcome = "Access granted. \r\nWelcome back, Administrator ";
-	welcome = welcome + getUserName(UserID) + " ! ";
+	CString welcome = "Access granted. \r\nWelcome back, Administrator 【";
+	welcome = welcome + getUserName(UserID) + "】! ";
 	SetDlgItemText(IDC_EContents3, welcome);
+	GetDlgItem(IDC_EContents3)->SetFocus();
 }
 
 void CAdminDlg::OnBnClickedCancel()
