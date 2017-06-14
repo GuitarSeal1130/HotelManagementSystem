@@ -28,7 +28,7 @@ CString getContents()
 	m_db.OpenEx(_T("DSN=HotelManagementSystem"), CDatabase::noOdbcDialog);
 	rs.m_pDatabase = &m_db;
 	rs.Open(AFX_DB_USE_DEFAULT_TYPE, "SELECT * FROM dbo.RoomOperation");
-	CString Output="Access granted. \r\nWelcome back, Operator! \r\n\r\n\r\n     RoomID   |   BeginTime   |   CIdentityID   |   Remarks\r\n\r\n";
+	CString Output="\r\n\r\n\r\n     RoomID   |   BeginTime   |   CIdentityID   |   Remarks\r\n\r\n";
 	CString RoomID, BeginTime, CIdentityID, Remarks;
 	for (short int i = 0; i < rs.GetRecordCount(); i+=1)
 	{
@@ -40,4 +40,20 @@ CString getContents()
 		Output = Output+"        "+RoomID + "          " + BeginTime + "             " + CIdentityID + "             " + Remarks + "\r\n";
 	}
 	return Output;
+}
+
+CString getUserName(CString UserID)
+{
+	CDatabase m_db;
+	CRecordset rs;
+	m_db.OpenEx(_T("DSN=HotelManagementSystem"), CDatabase::noOdbcDialog);
+	rs.m_pDatabase = &m_db;
+
+	CString sql = "SELECT Name FROM dbo.UserInfo WHERE UserID='";
+	sql += UserID;
+	sql += "'";
+	rs.Open(AFX_DB_USE_DEFAULT_TYPE, sql);
+	CString userid;
+	rs.GetFieldValue(short(0), userid);
+	return userid;
 }

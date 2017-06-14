@@ -106,6 +106,7 @@ void CHMSDlg::OnBnClickedCancel()  //  Key "Exit"
 	CDialog::OnCancel();
 }
 
+CString UserID;
 void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 {
 	CString a, b;
@@ -116,6 +117,7 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
+		UserID = a;
 		CAdminDlg admindlg;
 		admindlg.DoModal();
 	}
@@ -123,6 +125,7 @@ void CHMSDlg::OnBnClickedSignup()  // Key "Sign in! "
 	{
 		GetDlgItem(IDC_EUserID)->EnableWindow(false);
 		GetDlgItem(IDC_EPassword)->EnableWindow(false);
+		UserID = a;
 		CContensDlg contensdlg;
 		contensdlg.DoModal();
 	}

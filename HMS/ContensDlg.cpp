@@ -36,7 +36,7 @@ END_MESSAGE_MAP()
 
 
 // CContensDlg 消息处理程序
-
+extern CString UserID;
 BOOL CContensDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
@@ -50,7 +50,9 @@ BOOL CContensDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 	
-	SetDlgItemText(IDC_EContents2, getContents());
+	CString welcome = "Access granted. \r\nWelcome back, Operator ";
+	welcome = welcome + getUserName(UserID) + " ! " + getContents();
+	SetDlgItemText(IDC_EContents2, welcome);
 
 	
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
@@ -58,7 +60,9 @@ BOOL CContensDlg::OnInitDialog()
 
 void CContensDlg::OnBnClickedRefresh()
 {
-	SetDlgItemText(IDC_EContents2, getContents());
+	CString welcome = "Access granted. \r\nWelcome back, Operator ";
+	welcome = welcome + getUserName(UserID) + " ! " + getContents();
+	SetDlgItemText(IDC_EContents2, welcome);
 }
 
 void CContensDlg::OnBnClickedCancel()
